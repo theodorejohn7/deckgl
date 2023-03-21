@@ -1,0 +1,317 @@
+{
+  "layers": [
+    {
+      "id": 1,
+      "name": "Layer 1",
+      "data": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -74.006,
+                40.7128
+              ]
+            },
+            "properties": {
+              "name": "New York City"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "name": "Layer 2",
+      "data": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -118.2437,
+                34.0522
+              ]
+            },
+            "properties": {
+              "name": "Los Angeles"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "testing",
+      "data": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -118.2437,
+                34.0522
+              ]
+            },
+            "properties": {
+              "name": "Los Angeles"
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "coordinates": [
+                [
+                  [
+                    -122.43669680970595,
+                    37.79151338241114
+                  ],
+                  [
+                    -122.43669680970595,
+                    37.759938661584485
+                  ],
+                  [
+                    -122.39674977246841,
+                    37.759938661584485
+                  ],
+                  [
+                    -122.39674977246841,
+                    37.79151338241114
+                  ],
+                  [
+                    -122.43669680970595,
+                    37.79151338241114
+                  ]
+                ]
+              ],
+              "type": "Polygon"
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "coordinates": [
+                [
+                  [
+                    -122.4990346235278,
+                    37.81745080809303
+                  ],
+                  [
+                    -122.4990346235278,
+                    37.80120190694983
+                  ],
+                  [
+                    -122.45275934276766,
+                    37.80120190694983
+                  ],
+                  [
+                    -122.45275934276766,
+                    37.81745080809303
+                  ],
+                  [
+                    -122.4990346235278,
+                    37.81745080809303
+                  ]
+                ]
+              ],
+              "type": "Polygon"
+            }
+          }
+        ]
+      },
+      "id": "f1f9b4b0-728f-4393-8ad0-276e9d5fc8dd"
+    },
+    {
+      "name": "aa",
+      "data": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -118.2437,
+                34.0522
+              ]
+            },
+            "properties": {
+              "name": "Los Angeles"
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "coordinates": [
+                [
+                  [
+                    -122.43669680970595,
+                    37.79151338241114
+                  ],
+                  [
+                    -122.43669680970595,
+                    37.759938661584485
+                  ],
+                  [
+                    -122.39674977246841,
+                    37.759938661584485
+                  ],
+                  [
+                    -122.39674977246841,
+                    37.79151338241114
+                  ],
+                  [
+                    -122.43669680970595,
+                    37.79151338241114
+                  ]
+                ]
+              ],
+              "type": "Polygon"
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "coordinates": [
+                [
+                  [
+                    -122.4990346235278,
+                    37.81745080809303
+                  ],
+                  [
+                    -122.4990346235278,
+                    37.80120190694983
+                  ],
+                  [
+                    -122.45275934276766,
+                    37.80120190694983
+                  ],
+                  [
+                    -122.45275934276766,
+                    37.81745080809303
+                  ],
+                  [
+                    -122.4990346235278,
+                    37.81745080809303
+                  ]
+                ]
+              ],
+              "type": "Polygon"
+            }
+          }
+        ]
+      },
+      "id": "90f65ce8-d101-470f-b5f9-7f7760d9c0c8"
+    },
+    {
+      "id": "a6db3dce-ee54-4865-8281-403a40ca113a",
+      "data": {
+        "id": "geojson-layer",
+        "props": {
+          "id": "geojson-layer",
+          "stroked": false,
+          "filled": true,
+          "extruded": true,
+          "pointRadiusMinPixels": 2,
+          "pointRadiusMaxPixels": 20,
+          "getFillColor": [
+            255,
+            200,
+            0,
+            160
+          ],
+          "getLineColor": [
+            255,
+            200,
+            0
+          ],
+          "getPointRadius": 100,
+          "opacity": 1,
+          "lineWidthMinPixels": 1,
+          "pickable": true
+        },
+        "count": 5,
+        "internalState": null,
+        "lifecycle": "Awaiting state",
+        "parent": null
+      }
+    },
+    {
+      "id": "118a3b1a-ed28-41e0-851f-55fedbcbaab8",
+      "name": "mdu",
+      "data": {
+        "id": "geojson-layer",
+        "props": {
+          "id": "geojson-layer",
+          "stroked": false,
+          "filled": true,
+          "extruded": true,
+          "pointRadiusMinPixels": 2,
+          "pointRadiusMaxPixels": 20,
+          "getFillColor": [
+            255,
+            200,
+            0,
+            160
+          ],
+          "getLineColor": [
+            255,
+            200,
+            0
+          ],
+          "getPointRadius": 100,
+          "opacity": 1,
+          "lineWidthMinPixels": 1,
+          "pickable": true
+        },
+        "count": 6,
+        "internalState": null,
+        "lifecycle": "Awaiting state",
+        "parent": null
+      }
+    },
+    {
+      "id": "809afde8-7785-4d9e-87d4-bb846bf6b7f7",
+      "name": "new mdu",
+      "data": {
+        "id": "geojson-layer",
+        "props": {
+          "id": "geojson-layer",
+          "stroked": false,
+          "filled": true,
+          "extruded": true,
+          "pointRadiusMinPixels": 2,
+          "pointRadiusMaxPixels": 20,
+          "getFillColor": [
+            255,
+            200,
+            0,
+            160
+          ],
+          "getLineColor": [
+            255,
+            200,
+            0
+          ],
+          "getPointRadius": 100,
+          "opacity": 1,
+          "lineWidthMinPixels": 1,
+          "pickable": true
+        },
+        "count": 4,
+        "internalState": null,
+        "lifecycle": "Awaiting state",
+        "parent": null
+      }
+    }
+  ]
+}
