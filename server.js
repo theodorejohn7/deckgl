@@ -8,7 +8,6 @@ server.use(jsonServer.bodyParser);
 server.use(middlewares);
 
 server.post('/layers', (req, res) => {
-    console.log("@$# api ",req.body)
   const layer = req.body;
   layer.id = uuid.v4();
   router.db.get('layers').push(layer).write();
@@ -43,29 +42,4 @@ server.use(router);
 server.listen(3001, () => {
   console.log('JSON Server is running');
 });
-
-
-// const jsonServer = require("json-server");
-// const uuid = require('uuid');
-
-
-// const server = jsonServer.create();
-// const router = jsonServer.router("db.json");
-// const middlewares = jsonServer.defaults();
-
-// const port = process.env.PORT || 3001;
-
-// server.use(middlewares);
-// server.use(jsonServer.bodyParser);
-// server.use(router);
-
-// server.use((req, res, next) => {
-//     if (req.method === 'POST') {
-//       req.body.id = uuid.v4();
-//     }
-//     next();
-//   });
-
-// server.listen(port, () => {
-//   console.log(`JSON Server is running on port ${port}`);
-// });
+ 

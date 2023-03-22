@@ -8,7 +8,6 @@ const api = axios.create({
 
 export const createLayer = async (layer) => {
   try {
-    console.log("@$# api", layer)
     const response = await api.post("/layers", layer);
     return response.data;
   } catch (error) {
