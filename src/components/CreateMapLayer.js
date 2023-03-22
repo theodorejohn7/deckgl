@@ -116,7 +116,7 @@ const CreateMapLayer = () => {
 
   return (
     <div >
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '0.5rem 0' }}>
         <Input.Search
           placeholder="Search location"
           enterButton={<EnvironmentOutlined />}
@@ -124,7 +124,7 @@ const CreateMapLayer = () => {
           value={searchInput}
           onChange={handleInputChange}
           onSearch={handleSearch}
-          style={{ width: '40%' }}
+          style={{ width: '30%' }}
         />
 
         <Input
@@ -134,7 +134,7 @@ const CreateMapLayer = () => {
           value={layerInput}
           onChange={(event) => { setLayerInput(event.target.value) }}
           // onSearch={handleSearch}
-          style={{ width: '10%' }}
+          style={{ width: '15%', margin:'0px 10px',  }}
         />
 
 
