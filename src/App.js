@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Layout, Menu } from 'antd';
 import DeckGLMap from "./components/DeckGLMap";
-import LayerForm from "./components/LayerForm";
-import { ScatterplotLayer } from "deck.gl";
 import LayerList from "./components/LayerList";
-import { getLayers, createLayer, deleteLayer } from "./utils/api";
+import { getLayers, deleteLayer } from "./utils/api";
 import "./App.css";
-// import 'antd/dist/antd.min.css';
 import { Drawer, Button } from 'antd';
 import CreateMapLayer from "./components/CreateMapLayer";
 
@@ -15,6 +12,15 @@ function App() {
   const [layers, setLayers] = useState([]);
   const [selectedLayer, setSelectedLayer] = useState(null);
   const [visible, setVisible] = useState(false);
+
+
+  const { Header, Content } = Layout;
+  const [activeMenu, setActiveMenu] = useState('home');
+
+  const handleMenuClick = (menuKey) => {
+    setActiveMenu(menuKey);
+  }
+
 
   const showDrawer = () => {
     setVisible(true);
@@ -28,17 +34,15 @@ function App() {
 
 
   const handleSelectLayer = (layerId) => {
-    console.log('Selected layer:', layerId);
+
     const layer = layers.find(layer => layer.id === layerId.id);
-    console.log("@$#appjs layers", layers, layer)
+
     setSelectedLayer(layer);
   }
 
   useEffect(() => {
     fetchLayers();
   }, []);
-
-  console.log("@$#app layers", layers)
 
   const fetchLayers = async () => {
     try {
@@ -49,14 +53,9 @@ function App() {
     }
   };
 
-  const handleCreateLayer = async (layer) => {
-    try {
-      // const newLayer = await createLayer(layer);
-      setLayers([...layers, layer]);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+useEffect(()=>{
+  fetchLayers();
+},[visible])
 
   const handleDeleteLayer = async (layerId) => {
     try {
@@ -66,25 +65,7 @@ function App() {
       console.error(error);
     }
   };
-
-
-  const renderLayers = () => {
-    return layers.map(layer => {
-      const isLayerSelected = selectedLayer && layer.id === selectedLayer.id;
-      const opacity = isLayerSelected ? 0.8 : 0.5;
-      const color = isLayerSelected ? [255, 0, 0] : layer.color;
-      return (
-        <ScatterplotLayer
-          key={layer.id}
-          data={layer.data}
-          getPosition={layer.getPosition}
-          getColor={color}
-          getRadius={layer.getRadius}
-          opacity={opacity}
-        />
-      );
-    });
-  };
+ 
 
   return (
     <div className="App">
@@ -97,27 +78,34 @@ function App() {
         open={visible}
       >
         <div className="sidebar">
-
-          <LayerList appLayers={layers} onSelect={handleSelectLayer} onDeleteLayer={handleDeleteLayer} />
+          <LayerList open={visible} appLayers={layers} onSelect={handleSelectLayer} onDeleteLayer={handleDeleteLayer} />
         </div>
       </Drawer>
 
-      <div className="map-container">
+      <Layout>
+        <Header>
+          <Menu theme="dark" mode="horizontal" selectedKeys={[activeMenu]} onClick={({ key }) => handleMenuClick(key)}>
+            <Menu.Item key="create">Create Layer</Menu.Item>
+            <Menu.Item key="view">View Layer</Menu.Item>
+          </Menu>
+        </Header>
+        <Content  >
+          {activeMenu === 'create' &&
+            <CreateMapLayer locationData={selectedLayer} />
+          }
+          {activeMenu === 'view' && <>
+            <Button type="primary" onClick={showDrawer}
+              style={{ position: "absolute", top: "65px", zIndex: 99 }}
+            >
+              View Layers
+            </Button>
+            <DeckGLMap selectedLayer={selectedLayer} />
+          </>}
+        </Content>
+      </Layout>
 
-         <DeckGLMap layers={renderLayers()} selectedLayer={selectedLayer} />
-        <div style={{ display: 'flex' }}>
 
-          {/* <LayerForm onCreate={handleCreateLayer} /> */}
-          {/* <CreateMapLayer locationData={selectedLayer} /> */}
-          <Button type="primary" onClick={showDrawer}>
-            View Layers
-          </Button>
-        </div>
-      </div>
-
-
-
-    </div>
+    </div >
   );
 }
 

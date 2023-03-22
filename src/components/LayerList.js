@@ -4,7 +4,7 @@ import axios from "axios";
 
 const LAYER_API_URL = "http://localhost:3001/layers";
 
-const LayerList = ({ onSelect, appLayers }) => {
+const LayerList = ({ open,onSelect, appLayers }) => {
   const [layers, setLayers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -38,7 +38,7 @@ console.log("@$# layers", layers)
   useEffect(()=>{
     fetchData();
 
-  },[appLayers])
+  },[appLayers,open])
 
   return (
     <div>

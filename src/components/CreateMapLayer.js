@@ -1,8 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { GoogleMap, Marker, Polygon, useLoadScript } from '@react-google-maps/api';
 import { Input, Button, message } from 'antd';
-import { EnvironmentOutlined } from '@ant-design/icons';
-import { GeoJsonLayer } from "@deck.gl/layers";
+import { EnvironmentOutlined } from '@ant-design/icons'; 
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 
@@ -14,7 +13,7 @@ const CreateMapLayer = () => {
   const [mapRef, setMapRef] = useState(null);
   const LAYER_API_URL = "http://localhost:3001/layers";
 
-  const { isLoaded, loadError } = useLoadScript({
+  const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_TOKEN,
   });
 
@@ -23,17 +22,16 @@ const CreateMapLayer = () => {
   }, []);
 
   const handlePolygonClick = () => {
-    // Clear the current polygon
-    // console.log()
+    
     setPolygonPaths([]);
   };
 
   const handleMapClick = (event) => {
     const lat = event.latLng.lat();
     const lng = event.latLng.lng();
-    setPolygonPaths([...polygonPaths, { lat, lng }]);
+    setPolygonPaths([...polygonPaths, { lng, lat }]);
   };
-  console.log("@$# polypath", polygonPaths)
+   
   const handleInputChange = (event) => {
     setSearchInput(event.target.value);
   };
@@ -59,15 +57,7 @@ const CreateMapLayer = () => {
     });
   };
 
-  const handleCreatePolygon = () => {
-    if (polygonPaths.length === 0) {
-      message.warning('Please draw a polygon on the map');
-      return;
-    }
-
-    const coordinates = polygonPaths.map(({ lat, lng }) => ({ lat, lng }));
-    message.success(`Polygon created with coordinates: ${JSON.stringify(coordinates)}`);
-  };
+   
 
   const mapOptions = {
     zoomControl: true,
@@ -76,7 +66,7 @@ const CreateMapLayer = () => {
   };
 
   const mapContainerStyle = {
-    height: '80vh',
+    height: '70vh',
     width: '100vw',
   };
 
@@ -84,16 +74,17 @@ const CreateMapLayer = () => {
 
 
   const createLayer = async (values) => {
-    console.log("@$#33333333333333333333333333333333333")
+
     let temp = {};
     temp["id"] = myUuid;
     temp["name"] = layerInput;
     temp["data"] = values;
 
     try {
-      const response = await axios.post(`${LAYER_API_URL}`, temp);
-      const layer = response.data;
-      message.success("Layer created successfully!");
+       await axios.post(`${LAYER_API_URL}`, temp);
+
+      message.success(`${layerInput} Layer created successfully!`);
+      setPolygonPaths([])
 
     } catch (error) {
       console.error(error);
@@ -103,30 +94,28 @@ const CreateMapLayer = () => {
 
 
   const handleCreateLayer = () => {
-    const geoJsonLayer = new GeoJsonLayer({
-      id: "geojson-layer",
-      data: polygonPaths,
-      stroked: false,
-      filled: true,
-      extruded: true,
-      pointRadiusMinPixels: 2,
-      pointRadiusMaxPixels: 20,
-      getFillColor: [255, 200, 0, 160],
-      getLineColor: [255, 200, 0],
-      getRadius: 100,
-      opacity: 1,
-      lineWidthMinPixels: 1,
-      pickable: true,
-      onClick: (event) => console.log(event),
-    });
-    console.log('@$#121 polygonPaths', polygonPaths, geoJsonLayer)
 
-    createLayer(geoJsonLayer)
 
+    const newLayer = {
+      type: 'FeatureCollection',
+      features:
+
+        [
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "coordinates": [polygonPaths.map(obj => Object.values(obj))],
+              "type": "Polygon"
+            }
+          }]
+    }
+
+    createLayer(newLayer)
   }
 
   return (
-    <div>
+    <div >
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
         <Input.Search
           placeholder="Search location"
@@ -149,10 +138,13 @@ const CreateMapLayer = () => {
         />
 
 
-        <Button onClick={handleCreateLayer}>Create Layer</Button>
+        <Button onClick={handleCreateLayer} 
+        disabled={!(polygonPaths.length>2 && layerInput)}
+        >Create Layer</Button>
       </div>
       {isLoaded && (
-        <GoogleMap
+       
+       <GoogleMap
           mapContainerStyle={mapContainerStyle}
           center={center}
           zoom={13}

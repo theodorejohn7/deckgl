@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import DeckGL from "@deck.gl/react";
+import React, { useState, useEffect } from "react"; 
 import { GeoJsonLayer } from "@deck.gl/layers";
 import { GoogleMapsOverlay } from "@deck.gl/google-maps";
 // import "@deck.gl/core/dist/styles.css";
