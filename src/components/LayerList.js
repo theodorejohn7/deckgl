@@ -19,7 +19,6 @@ const LayerList = ({ open,onSelect, appLayers }) => {
     }
     setIsLoading(false);
   };
-console.log("@$# layers", layers)
   const handleDelete = async (layerId) => {
     try {
       await axios.delete(`${LAYER_API_URL}/${layerId}`);
